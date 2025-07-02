@@ -15,72 +15,56 @@ export default function MerchCTA({ onOrderClick }: MerchCTAProps) {
   };
 
   return (
-    <div className="mt-20 text-center">
-      <div className="bg-gradient-to-r from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-12 border border-purple-500/30 relative overflow-hidden">
-        {/* Анимированные частицы */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-purple-400 rounded-full animate-ping"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${2 + Math.random() * 2}s`,
-              }}
-            ></div>
-          ))}
-        </div>
-
+    <div className="mt-16 text-center">
+      <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-10 border border-green-100 shadow-lg relative overflow-hidden">
         <div className="relative z-10">
-          <h3 className="text-4xl font-bold text-white mb-6">
-            Ready to join the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              Capybara Revolution
+          <h3 className="text-3xl font-semibold text-slate-700 mb-6">
+            Готовы создать{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
+              уютную атмосферу
             </span>
             ?
           </h3>
 
-          <div className="flex flex-wrap gap-6 justify-center">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Button
               onClick={onOrderClick}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-12 py-4 text-lg rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-10 py-3 text-base rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
             >
-              <Icon name="Zap" size={24} className="mr-3" />
+              <Icon name="ShoppingCart" size={20} className="mr-2" />
               Заказать сейчас
             </Button>
 
             <Button
               onClick={handleIdeaSubmit}
               variant="outline"
-              className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 px-12 py-4 text-lg rounded-2xl transition-all duration-300"
+              className="border-2 border-green-300 text-green-600 hover:bg-green-50 px-10 py-3 text-base rounded-xl transition-all duration-300"
             >
-              <Icon name="Lightbulb" size={24} className="mr-3" />
+              <Icon name="Heart" size={20} className="mr-2" />
               Предложить идею
             </Button>
 
             <Button
               onClick={handlePhoneCall}
               variant="outline"
-              className="border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 px-12 py-4 text-lg rounded-2xl transition-all duration-300"
+              className="border-2 border-blue-300 text-blue-600 hover:bg-blue-50 px-10 py-3 text-base rounded-xl transition-all duration-300"
             >
-              <Icon name="Phone" size={24} className="mr-3" />
+              <Icon name="Phone" size={20} className="mr-2" />
               Связаться
             </Button>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-400">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-slate-500">
             <div className="flex items-center justify-center">
-              <Icon name="Truck" size={16} className="mr-2 text-green-400" />
+              <Icon name="Truck" size={16} className="mr-2 text-green-500" />
               Доставка по всей России
             </div>
             <div className="flex items-center justify-center">
-              <Icon name="Shield" size={16} className="mr-2 text-blue-400" />
+              <Icon name="Shield" size={16} className="mr-2 text-blue-500" />
               Гарантия качества
             </div>
             <div className="flex items-center justify-center">
-              <Icon name="Heart" size={16} className="mr-2 text-red-400" />
+              <Icon name="Heart" size={16} className="mr-2 text-teal-500" />
               5% на помощь капибарам
             </div>
           </div>

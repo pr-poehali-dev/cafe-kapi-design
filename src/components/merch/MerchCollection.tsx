@@ -24,18 +24,11 @@ export default function MerchCollection({
     <div className="relative">
       {/* Заголовок коллекции */}
       <div className="text-center mb-12">
-        <div
-          className="inline-block text-6xl mb-4 animate-bounce"
-          style={{ animationDelay: `${collectionIndex * 200}ms` }}
-        >
-          {collection.bgPattern}
-        </div>
-        <h3
-          className={`text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${collection.gradient} mb-3`}
-        >
+        <div className="inline-block text-5xl mb-4">{collection.bgPattern}</div>
+        <h3 className="text-3xl font-semibold text-slate-700 mb-3">
           {collection.title}
         </h3>
-        <p className="text-gray-400 text-lg">{collection.subtitle}</p>
+        <p className="text-slate-500 text-lg">{collection.subtitle}</p>
       </div>
 
       {/* Сетка товаров */}

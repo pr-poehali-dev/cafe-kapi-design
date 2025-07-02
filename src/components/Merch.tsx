@@ -23,7 +23,7 @@ export default function Merch() {
   return (
     <section
       id="merch"
-      className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden"
+      className="py-24 bg-gradient-to-br from-blue-50 via-green-50 to-orange-50 relative overflow-hidden"
     >
       <AnimatedBackground />
 

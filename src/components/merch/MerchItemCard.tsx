@@ -37,43 +37,36 @@ export default function MerchItemCard({
 
   return (
     <Card
-      className={`group relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg border-2 border-slate-700/50 hover:border-purple-500/50 transition-all duration-500 transform hover:-translate-y-4 hover:scale-105 cursor-pointer overflow-hidden ${
-        isHovered ? "shadow-2xl shadow-purple-500/20" : ""
+      className={`group relative bg-white/90 backdrop-blur-sm border border-slate-200 hover:border-green-300 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg cursor-pointer overflow-hidden ${
+        isHovered ? "shadow-xl shadow-green-100" : ""
       }`}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       onClick={onSelect}
     >
-      {/* Анимированный фон карточки */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${collection.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-      ></div>
+      {/* Мягкий фон карточки */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-      {/* Голографический эффект */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-
-      <CardContent className="p-8 relative z-10">
-        <div className="flex items-start justify-between mb-6">
-          <div className="text-5xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+      <CardContent className="p-6 relative z-10">
+        <div className="flex items-start justify-between mb-4">
+          <div className="text-4xl transform group-hover:scale-110 transition-all duration-300">
             {item.emoji}
           </div>
           <div className="text-right">
-            <div className="text-2xl font-bold text-white mb-1">
+            <div className="text-xl font-semibold text-slate-700 mb-1">
               {item.price}
             </div>
-            <Badge
-              className={`bg-gradient-to-r ${collection.gradient} text-white border-0 text-xs px-3 py-1`}
-            >
+            <Badge className="bg-green-100 text-green-700 border-0 text-xs px-2 py-1">
               #{item.vibe}
             </Badge>
           </div>
         </div>
 
-        <h4 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-300">
+        <h4 className="text-lg font-semibold text-slate-700 mb-2 group-hover:text-green-700 transition-colors duration-300">
           {item.name}
         </h4>
 
-        <p className="text-gray-400 text-sm leading-relaxed mb-4">
+        <p className="text-slate-500 text-sm leading-relaxed mb-4">
           {item.description}
         </p>
 
@@ -83,32 +76,30 @@ export default function MerchItemCard({
             {item.colors.map((color, colorIndex) => (
               <div
                 key={colorIndex}
-                className="w-6 h-6 rounded-full border-2 border-white/30 flex items-center justify-center text-xs text-white font-bold"
+                className="w-5 h-5 rounded-full border-2 border-slate-200 shadow-sm"
                 style={{ background: getColorStyle(color) }}
                 title={color}
-              >
-                {color.length <= 2 ? color : color[0]}
-              </div>
+              ></div>
             ))}
           </div>
 
           <Button
             size="sm"
-            className={`bg-gradient-to-r ${collection.gradient} hover:shadow-lg transition-all duration-300`}
+            className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white hover:shadow-md transition-all duration-300"
             onClick={(e) => {
               e.stopPropagation();
               onAddToCart(item.name);
             }}
           >
-            <Icon name="Plus" size={16} className="mr-1" />
-            Add
+            <Icon name="ShoppingCart" size={14} className="mr-1" />
+            Купить
           </Button>
         </div>
 
         {/* Индикатор популярности */}
-        <div className="mt-4 pt-4 border-t border-slate-700/50">
-          <div className="flex items-center justify-between text-xs text-gray-500">
-            <span>🔥 Trending</span>
+        <div className="mt-4 pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span>💚 Популярно</span>
             <span>⭐ 4.9/5</span>
           </div>
         </div>
