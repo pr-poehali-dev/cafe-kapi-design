@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Events from "@/components/Events";
+import Menu from "@/components/Menu";
 
 const Index = () => {
   return (
@@ -10,19 +11,7 @@ const Index = () => {
       <Hero />
       <About />
       <Events />
-
-      {/* Placeholder sections */}
-      <section
-        id="menu"
-        className="py-16 bg-gradient-to-br from-forest-50 to-nature-100"
-      >
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-forest-800 mb-4">Наше меню</h2>
-          <p className="text-forest-600">
-            Скоро здесь появится полное меню наших напитков и закусок
-          </p>
-        </div>
-      </section>
+      <Menu />
 
       <section
         id="charity"
