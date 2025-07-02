@@ -1,9 +1,29 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import Icon from "@/components/ui/icon";
+import { useState } from "react";
 
 export default function Merch() {
+  const [showOrderForm, setShowOrderForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    items: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Заказ отправлен:", formData);
+    alert("Спасибо за заказ! Мы свяжемся с вами в ближайшее время 🐹");
+    setShowOrderForm(false);
+    setFormData({ name: "", email: "", phone: "", items: "", message: "" });
+  };
   const merchItems = [
     {
       name: "Футболка «Спокойствие капибары»",
@@ -235,11 +255,25 @@ export default function Merch() {
               </div>
 
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button className="bg-gradient-to-r from-forest-500 to-nature-500 hover:from-forest-600 hover:to-nature-600 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <Button
+                  onClick={() => setShowOrderForm(true)}
+                  className="bg-gradient-to-r from-forest-500 to-nature-500 hover:from-forest-600 hover:to-nature-600 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Icon name="ShoppingCart" size={20} className="mr-2" />
+                  Заказать онлайн
+                </Button>
+                <Button
+                  onClick={() =>
+                    window.open("mailto:team@CapiCoffee.com", "_blank")
+                  }
+                  variant="outline"
+                  className="border-2 border-forest-400 text-forest-700 hover:bg-forest-50 px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                >
                   <Icon name="Mail" size={20} className="mr-2" />
                   Написать на почту
                 </Button>
                 <Button
+                  onClick={() => window.open("tel:89995535494", "_blank")}
                   variant="outline"
                   className="border-2 border-forest-400 text-forest-700 hover:bg-forest-50 px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
@@ -258,6 +292,164 @@ export default function Merch() {
           </div>
         </div>
       </div>
+
+      {/* Модальное окно с формой заказа */}
+      {showOrderForm && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-nature-400 to-forest-400 rounded-full flex items-center justify-center mr-4">
+                  <Icon name="ShoppingCart" size={24} className="text-white" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-forest-800">
+                    Заказ мерча
+                  </h3>
+                  <p className="text-forest-600">
+                    Заполните форму и мы свяжемся с вами
+                  </p>
+                </div>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowOrderForm(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <Icon name="X" size={24} />
+              </Button>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="name" className="text-forest-700 font-medium">
+                    Ваше имя *
+                  </Label>
+                  <Input
+                    id="name"
+                    required
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    className="mt-1 border-forest-300 focus:border-nature-500"
+                    placeholder="Как к вам обращаться?"
+                  />
+                </div>
+                <div>
+                  <Label
+                    htmlFor="email"
+                    className="text-forest-700 font-medium"
+                  >
+                    Email *
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    className="mt-1 border-forest-300 focus:border-nature-500"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="phone" className="text-forest-700 font-medium">
+                  Телефон
+                </Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  className="mt-1 border-forest-300 focus:border-nature-500"
+                  placeholder="+7 (999) 123-45-67"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="items" className="text-forest-700 font-medium">
+                  Что хотите заказать? *
+                </Label>
+                <Textarea
+                  id="items"
+                  required
+                  value={formData.items}
+                  onChange={(e) =>
+                    setFormData({ ...formData, items: e.target.value })
+                  }
+                  className="mt-1 border-forest-300 focus:border-nature-500 min-h-20"
+                  placeholder="Например: Футболка размер M, цвет бежевый; Кружка белая с принтом"
+                />
+              </div>
+
+              <div>
+                <Label
+                  htmlFor="message"
+                  className="text-forest-700 font-medium"
+                >
+                  Дополнительные пожелания
+                </Label>
+                <Textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                  className="mt-1 border-forest-300 focus:border-nature-500 min-h-16"
+                  placeholder="Есть вопросы или особые пожелания?"
+                />
+              </div>
+
+              <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-200">
+                <div className="flex items-start">
+                  <Icon
+                    name="Info"
+                    size={20}
+                    className="text-amber-600 mr-3 mt-0.5 flex-shrink-0"
+                  />
+                  <div className="text-sm text-amber-700">
+                    <p className="font-medium mb-1">Как это работает:</p>
+                    <ul className="space-y-1 text-xs">
+                      <li>• Мы получим ваш заказ и свяжемся в течение дня</li>
+                      <li>• Уточним детали, размеры и способ получения</li>
+                      <li>
+                        • Вы можете забрать мерч в кафе или обсудить доставку
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-4 pt-4">
+                <Button
+                  type="submit"
+                  className="flex-1 bg-gradient-to-r from-forest-500 to-nature-500 hover:from-forest-600 hover:to-nature-600 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Icon name="Send" size={20} className="mr-2" />
+                  Отправить заказ
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setShowOrderForm(false)}
+                  className="px-8 py-3 border-2 border-gray-300 text-gray-600 hover:bg-gray-50 rounded-xl"
+                >
+                  Отмена
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
