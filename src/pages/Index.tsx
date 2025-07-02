@@ -5,6 +5,7 @@ import Events from "@/components/Events";
 import Menu from "@/components/Menu";
 import Merch from "@/components/Merch";
 import Interesting from "@/components/Interesting";
+import Contacts from "@/components/Contacts";
 
 const Index = () => {
   return (
@@ -43,15 +44,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section
-        id="contacts"
-        className="py-16 bg-gradient-to-br from-nature-100 to-aqua-50"
-      >
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-nature-700 mb-4">Контакты</h2>
-          <p className="text-nature-600">Адрес, телефон и часы работы</p>
-        </div>
-      </section>
+      <Contacts />
     </div>
   );
 };
