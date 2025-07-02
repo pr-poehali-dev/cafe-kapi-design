@@ -1,145 +1,232 @@
 import Icon from "@/components/ui/icon";
+import { useState } from "react";
 
 const Contacts = () => {
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [copiedPhone, setCopiedPhone] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const copyPhone = () => {
+    navigator.clipboard.writeText("+7 (999) 553-54-94");
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
+  };
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("team@CapiCoffee.com");
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
   return (
     <section
       id="contacts"
-      className="py-16 bg-gradient-to-br from-nature-100 to-aqua-50"
+      className="py-20 bg-gradient-to-br from-orange-50 via-blue-50 to-green-50 relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-nature-700 mb-4">Контакты</h2>
-          <p className="text-nature-600">
-            Приходите к нам в гости или свяжитесь удобным способом
+      {/* Плавающие декоративные элементы */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 text-6xl opacity-20 animate-bounce">
+          🐾
+        </div>
+        <div className="absolute top-40 right-20 text-4xl opacity-20 animate-pulse">
+          💌
+        </div>
+        <div className="absolute bottom-20 left-20 text-5xl opacity-20 animate-bounce delay-1000">
+          📞
+        </div>
+        <div className="absolute bottom-40 right-10 text-3xl opacity-20 animate-pulse delay-500">
+          🌿
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-200 to-green-200 rounded-full mb-6 shadow-lg">
+            <span className="text-3xl">📍</span>
+          </div>
+          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-blue-600 to-green-600 mb-4">
+            Найдите нас
+          </h2>
+          <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+            Мы всегда рады гостям! Приходите за чашечкой кофе и порцией
+            капибара-терапии 🐹☕
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Контактная информация */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-nature-100">
-              <h3 className="text-2xl font-semibold text-nature-800 mb-6">
-                Как нас найти
-              </h3>
-
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="bg-nature-100 rounded-full p-3 mr-4 flex-shrink-0">
-                    <Icon name="MapPin" size={20} className="text-nature-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-nature-800 mb-1">Адрес</h4>
-                    <p className="text-nature-600">
-                      г. Москва, Никольская улица 8
-                    </p>
-                  </div>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-8 mb-12">
+            {/* Местоположение */}
+            <div
+              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-orange-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer group"
+              onMouseEnter={() => setHoveredCard("location")}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <div className="flex items-center mb-6">
+                <div className="bg-gradient-to-br from-orange-200 to-orange-300 rounded-2xl p-4 mr-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                  <Icon name="MapPin" size={28} className="text-orange-700" />
                 </div>
-
-                <div className="flex items-start">
-                  <div className="bg-nature-100 rounded-full p-3 mr-4 flex-shrink-0">
-                    <Icon name="Clock" size={20} className="text-nature-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-nature-800 mb-1">
-                      Режим работы
-                    </h4>
-                    <p className="text-nature-600">
-                      Ежедневно с 10:00 до 22:00
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="text-xl font-bold text-orange-800">Адрес</h3>
+                  <p className="text-orange-600 text-sm">Где мы прячемся</p>
                 </div>
-
-                <div className="flex items-start">
-                  <div className="bg-nature-100 rounded-full p-3 mr-4 flex-shrink-0">
-                    <Icon name="Phone" size={20} className="text-nature-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-nature-800 mb-1">
-                      Телефон
-                    </h4>
-                    <p className="text-nature-600">+7 (999) 553-54-94</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-nature-100 rounded-full p-3 mr-4 flex-shrink-0">
-                    <Icon name="Mail" size={20} className="text-nature-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-nature-800 mb-1">Почта</h4>
-                    <p className="text-nature-600">team@CapiCoffee.com</p>
-                  </div>
-                </div>
+              </div>
+              <p className="text-slate-600 text-lg font-medium">
+                г. Москва,
+                <br />
+                Никольская улица 8
+              </p>
+              <div className="mt-4 text-orange-500 text-sm">
+                {hoveredCard === "location"
+                  ? "📍 Кликните, чтобы открыть карту"
+                  : "🗺️ Центр города"}
               </div>
             </div>
 
-            {/* Социальные сети */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-nature-100">
-              <h3 className="text-2xl font-semibold text-nature-800 mb-6">
-                Мы в соцсетях
-              </h3>
-
-              <div className="space-y-4">
-                <a
-                  href="#"
-                  className="flex items-center p-4 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all duration-300 group"
-                >
-                  <div className="bg-blue-500 rounded-full p-3 mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <svg
-                      className="w-6 h-6 text-white"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M15.07 13.76c-.16-.4-.56-.76-1.18-.76-.62 0-1.02.36-1.18.76L12 16.5l-.71-2.74c-.16-.4-.56-.76-1.18-.76-.62 0-1.02.36-1.18.76L8 16.5V7.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5v9l-.93-2.74z" />
-                      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm7 10c0 .34-.03.67-.08 1H13v2h5.92c-.45 2.1-1.47 3.98-2.92 5.45-1.45 1.47-3.35 2.47-5.45 2.92V18h-2v4.92c-2.1-.45-3.98-1.47-5.45-2.92C2.65 18.55 1.65 16.65 1.2 14.55H7v-2H1.08c.05-.33.08-.66.08-1s-.03-.67-.08-1H7V8H1.2c.45-2.1 1.47-3.98 2.92-5.45C5.57 1.1 7.47.1 9.57-.35V5h2V-.35c2.1.45 3.98 1.47 5.45 2.92 1.45 1.47 2.47 3.35 2.92 5.45H13v2h5.92c.05.33.08.66.08 1z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-blue-800">ВКонтакте</h4>
-                    <p className="text-blue-600 text-sm">
-                      Следите за новостями и акциями
-                    </p>
-                  </div>
-                </a>
-
-                <a
-                  href="#"
-                  className="flex items-center p-4 rounded-xl bg-gradient-to-r from-sky-50 to-sky-100 hover:from-sky-100 hover:to-sky-200 transition-all duration-300 group"
-                >
-                  <div className="bg-sky-500 rounded-full p-3 mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <svg
-                      className="w-6 h-6 text-white"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-sky-800">Telegram</h4>
-                    <p className="text-sky-600 text-sm">
-                      Быстрая связь и уведомления
-                    </p>
-                  </div>
-                </a>
-
-                <a
-                  href="mailto:team@CapiCoffee.com"
-                  className="flex items-center p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-emerald-100 hover:from-emerald-100 hover:to-emerald-200 transition-all duration-300 group"
-                >
-                  <div className="bg-emerald-500 rounded-full p-3 mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <Icon name="Mail" size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-emerald-800">
-                      Электронная почта
-                    </h4>
-                    <p className="text-emerald-600 text-sm">
-                      team@CapiCoffee.com
-                    </p>
-                  </div>
-                </a>
+            {/* Время работы */}
+            <div
+              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-blue-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer group"
+              onMouseEnter={() => setHoveredCard("time")}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <div className="flex items-center mb-6">
+                <div className="bg-gradient-to-br from-blue-200 to-blue-300 rounded-2xl p-4 mr-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                  <Icon name="Clock" size={28} className="text-blue-700" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-blue-800">
+                    Режим работы
+                  </h3>
+                  <p className="text-blue-600 text-sm">Когда мы открыты</p>
+                </div>
               </div>
+              <p className="text-slate-600 text-lg font-medium">
+                Ежедневно
+                <br />с 10:00 до 22:00
+              </p>
+              <div className="mt-4 text-blue-500 text-sm">
+                {hoveredCard === "time"
+                  ? "⏰ Сейчас открыто!"
+                  : "☕ 12 часов уюта"}
+              </div>
+            </div>
+
+            {/* Контакты */}
+            <div
+              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer group"
+              onMouseEnter={() => setHoveredCard("contact")}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <div className="flex items-center mb-6">
+                <div className="bg-gradient-to-br from-green-200 to-green-300 rounded-2xl p-4 mr-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                  <Icon name="Phone" size={28} className="text-green-700" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-green-800">
+                    Связаться
+                  </h3>
+                  <p className="text-green-600 text-sm">Позвоните нам</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <button
+                  onClick={copyPhone}
+                  className="block w-full text-left text-slate-600 text-lg font-medium hover:text-green-600 transition-colors"
+                >
+                  +7 (999) 553-54-94
+                </button>
+                <button
+                  onClick={copyEmail}
+                  className="block w-full text-left text-slate-600 text-sm hover:text-green-600 transition-colors"
+                >
+                  team@CapiCoffee.com
+                </button>
+              </div>
+              <div className="mt-4 text-green-500 text-sm">
+                {copiedPhone
+                  ? "📋 Телефон скопирован!"
+                  : copiedEmail
+                    ? "📋 Email скопирован!"
+                    : hoveredCard === "contact"
+                      ? "📋 Кликните, чтобы скопировать"
+                      : "📞 Быстрая связь"}
+              </div>
+            </div>
+          </div>
+
+          {/* Социальные сети с анимацией */}
+          <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-slate-700 mb-2">
+                Следите за капибара-новостями
+              </h3>
+              <p className="text-slate-500">
+                В социальных сетях всегда что-то интересное!
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <a
+                href="#"
+                className="group relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center mb-3">
+                    <div className="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center mr-3">
+                      <span className="text-xl">📘</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold">ВКонтакте</h4>
+                      <p className="text-blue-100 text-sm">@capicoffee</p>
+                    </div>
+                  </div>
+                  <p className="text-blue-100 text-sm">
+                    Фото милых капибар каждый день
+                  </p>
+                </div>
+              </a>
+
+              <a
+                href="#"
+                className="group relative overflow-hidden bg-gradient-to-br from-sky-500 to-sky-600 rounded-2xl p-6 text-white hover:from-sky-600 hover:to-sky-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center mb-3">
+                    <div className="w-10 h-10 bg-sky-400 rounded-lg flex items-center justify-center mr-3">
+                      <span className="text-xl">✈️</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold">Telegram</h4>
+                      <p className="text-sky-100 text-sm">@capicoffee_bot</p>
+                    </div>
+                  </div>
+                  <p className="text-sky-100 text-sm">
+                    Бронирование столиков и акции
+                  </p>
+                </div>
+              </a>
+
+              <a
+                href="mailto:team@CapiCoffee.com"
+                className="group relative overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-6 text-white hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center mb-3">
+                    <div className="w-10 h-10 bg-emerald-400 rounded-lg flex items-center justify-center mr-3">
+                      <Icon name="Mail" size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold">Email</h4>
+                      <p className="text-emerald-100 text-sm">Напишите нам</p>
+                    </div>
+                  </div>
+                  <p className="text-emerald-100 text-sm">
+                    Для деловых предложений
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
