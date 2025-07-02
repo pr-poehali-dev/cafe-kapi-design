@@ -79,52 +79,57 @@ export default function Events() {
             <h2 className="text-4xl font-bold text-forest-800 mb-4">
               Расписание мероприятий
             </h2>
-            <div className="w-20 h-1 bg-nature-500 mx-auto mb-6"></div>
-            <p className="text-lg text-forest-600 max-w-2xl mx-auto">
-              Присоединяйтесь к нашим уютным мероприятиям! Каждое событие — это
-              новая возможность познакомиться с единомышленниками и поддержать
-              капибар 🐾
+            <div className="w-20 h-1 bg-gradient-to-r from-forest-500 via-nature-500 to-aqua-500 mx-auto mb-6"></div>
+            <p className="text-lg text-forest-600">
+              Присоединяйтесь к нашим уютным мероприятиям и знакомьтесь с
+              единомышленниками
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event) => (
               <Card
                 key={event.id}
-                className={`bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 border-${event.color}-200 hover:border-${event.color}-300`}
+                className={`${event.bgColor} ${event.borderColor} border-2 hover:shadow-lg transition-all duration-300 hover:scale-105`}
               >
-                <CardHeader className="text-center">
-                  <div className="text-4xl mb-3">{event.icon}</div>
-                  <CardTitle className={`text-xl text-${event.color}-700 mb-2`}>
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge
+                      variant="outline"
+                      className="bg-white/70 text-forest-700 border-forest-300"
+                    >
+                      <Icon name="Calendar" size={14} className="mr-1" />
+                      {event.date}
+                    </Badge>
+                    <div className="text-3xl">{event.icon}</div>
+                  </div>
+                  <CardTitle className="text-xl text-forest-800">
                     {event.title}
                   </CardTitle>
-                  <CardDescription
-                    className={`text-${event.color}-600 font-medium`}
-                  >
-                    {event.date} {event.time && `• ${event.time}`}
-                  </CardDescription>
+                  <div className="flex items-center text-forest-600">
+                    <Icon name="Clock" size={16} className="mr-2" />
+                    <span className="font-medium">{event.time}</span>
+                  </div>
                 </CardHeader>
                 <CardContent>
-                  <p
-                    className={`text-${event.color}-600 leading-relaxed text-sm mb-4`}
-                  >
+                  <CardDescription className="text-forest-600 leading-relaxed mb-3">
                     {event.description}
-                  </p>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className={`w-full border-${event.color}-300 text-${event.color}-600 hover:bg-${event.color}-50`}
-                  >
-                    <Icon name="Calendar" size={16} className="mr-2" />
-                    Записаться
-                  </Button>
+                  </CardDescription>
+                  {event.dresscode && (
+                    <div className="bg-white/50 rounded-lg p-3 mt-3">
+                      <div className="flex items-center text-sm text-forest-700">
+                        <Icon name="Shirt" size={16} className="mr-2" />
+                        <span className="font-medium">{event.dresscode}</span>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <div className="bg-forest-100 rounded-2xl p-8 max-w-3xl mx-auto">
+            <div className="bg-gradient-to-br from-forest-100 to-nature-100 rounded-2xl p-8 max-w-3xl mx-auto border border-forest-200">
               <div className="text-3xl mb-4">🌿</div>
               <h3 className="text-xl font-semibold text-forest-700 mb-3">
                 Хотите предложить своё мероприятие?
@@ -133,10 +138,6 @@ export default function Events() {
                 У вас есть идея для интересного события в нашем кафе? Мы всегда
                 открыты для новых предложений от нашего сообщества!
               </p>
-              <Button className="bg-forest-600 hover:bg-forest-700 text-white">
-                <Icon name="MessageCircle" size={20} className="mr-2" />
-                Связаться с нами
-              </Button>
             </div>
           </div>
         </div>
