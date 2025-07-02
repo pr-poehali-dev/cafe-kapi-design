@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Events from "@/components/Events";
 import Menu from "@/components/Menu";
 import Merch from "@/components/Merch";
+import Interesting from "@/components/Interesting";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <Events />
       <Menu />
       <Merch />
+      <Interesting />
 
       <section
         id="charity"
