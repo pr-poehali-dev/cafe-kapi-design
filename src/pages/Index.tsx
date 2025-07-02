@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Events from "@/components/Events";
 import Menu from "@/components/Menu";
+import Merch from "@/components/Merch";
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
       <About />
       <Events />
       <Menu />
+      <Merch />
 
       <section
         id="charity"
