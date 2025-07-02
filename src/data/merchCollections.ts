@@ -1,0 +1,103 @@
+import { MerchCollection } from "@/types/merch";
+
+export const merchCollections: MerchCollection[] = [
+  {
+    id: "clothing",
+    title: "Капи-гардероб",
+    subtitle: "Одежда для тех, кто живет в ритме капибары",
+    gradient: "from-purple-400 via-pink-400 to-red-400",
+    bgPattern: "🌈",
+    items: [
+      {
+        name: "Худи «Zen Mode»",
+        price: "2990₽",
+        emoji: "🤗",
+        vibe: "расслабон",
+        colors: ["Lavender", "Sage", "Cream"],
+        description: "Oversize-худи из органического хлопка",
+      },
+      {
+        name: "Футболка «No Rush»",
+        price: "1690₽",
+        emoji: "😌",
+        vibe: "чилл",
+        colors: ["Sand", "Forest", "Cloud"],
+        description: "Минималистичный дизайн для максималистов спокойствия",
+      },
+      {
+        name: "Свитшот «Capybara Vibes»",
+        price: "2490₽",
+        emoji: "✨",
+        vibe: "вайб",
+        colors: ["Sunset", "Ocean", "Earth"],
+        description: "Трендовый оверсайз с 3D-вышивкой",
+      },
+    ],
+  },
+  {
+    id: "lifestyle",
+    title: "Лайфстайл",
+    subtitle: "Предметы для создания атмосферы дзена",
+    gradient: "from-emerald-400 via-teal-400 to-cyan-400",
+    bgPattern: "🧘",
+    items: [
+      {
+        name: "Термокружка «Mindful»",
+        price: "1290₽",
+        emoji: "🫖",
+        vibe: "осознанность",
+        colors: ["Matcha", "Rose Gold", "Black"],
+        description: "Двойные стенки + минималистичная гравировка",
+      },
+      {
+        name: "Планнер «Slow Living»",
+        price: "890₽",
+        emoji: "📖",
+        vibe: "планирование",
+        colors: ["Natural", "Sage"],
+        description: "Недатированный планнер для осознанной жизни",
+      },
+      {
+        name: "Эко-сумка «Less Stuff»",
+        price: "990₽",
+        emoji: "🌱",
+        vibe: "эко",
+        colors: ["Natural", "Charcoal"],
+        description: "Из переработанного материала",
+      },
+    ],
+  },
+  {
+    id: "digital",
+    title: "Цифровая коllection",
+    subtitle: "NFT и цифровые артобъекты от капибар",
+    gradient: "from-violet-400 via-purple-400 to-indigo-400",
+    bgPattern: "🎨",
+    items: [
+      {
+        name: "Стикерпак «Капи-эмоции 2.0»",
+        price: "390₽",
+        emoji: "😊",
+        vibe: "эмоции",
+        colors: ["Digital"],
+        description: "24 анимированных стикера для Telegram",
+      },
+      {
+        name: "Wallpaper Pack «Zen Spaces»",
+        price: "190₽",
+        emoji: "🖼️",
+        vibe: "эстетика",
+        colors: ["4K"],
+        description: "12 обоев высокого разрешения",
+      },
+      {
+        name: "Подписка «Капи-медитации»",
+        price: "490₽/мес",
+        emoji: "🎧",
+        vibe: "медитация",
+        colors: ["Audio"],
+        description: "Еженедельные аудио-медитации",
+      },
+    ],
+  },
+];
