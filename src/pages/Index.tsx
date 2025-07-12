@@ -6,11 +6,13 @@ import Menu from "@/components/Menu";
 import Merch from "@/components/Merch";
 import Interesting from "@/components/Interesting";
 import Contacts from "@/components/Contacts";
+import Cart from "@/components/Cart";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-cream-50">
       <Header />
+      <Cart />
       <Hero />
       <About />
       <Events />
